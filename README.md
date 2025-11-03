@@ -1,87 +1,87 @@
-# White Hat ESP - Herramientas de Ciberseguridad Defensiva
+# White Hat ESP — Defensive Cybersecurity Tools
 
-Proyecto educativo de ciberseguridad defensiva para ESP32.
+An educational defensive cybersecurity project for the ESP32.
 
-## 🛡️ Herramientas Incluidas
+## 🛡️ Included Tools
 
 ### 1. WiFi Security Scanner
-Escanea redes WiFi cercanas y detecta configuraciones inseguras.
-- Detecta tipo de encriptación (WEP, WPA, WPA2, WPA3)
-- Identifica redes sin contraseña
-- Muestra intensidad de señal (RSSI)
+Scans nearby WiFi networks and highlights insecure configurations.
+- Detects encryption type (WEP, WPA, WPA2, WPA3)
+- Identifies open (password-less) networks
+- Shows signal strength (RSSI)
 
 ### 2. Deauth Detection & Alert
-Monitorea y detecta ataques de deautenticación en redes WiFi.
-- Detecta paquetes de deautenticación
-- Sistema de alertas con LED y serial
-- Útil para proteger tu red
+Monitors and detects deauthentication attacks on WiFi networks.
+- Detects deauthentication packets
+- Alert system using LED and Serial output
+- Useful to help protect your network
 
 ### 3. Network Packet Monitor
-Analiza el tráfico WiFi en tiempo real.
-- Modo monitor/promiscuo
-- Estadísticas de paquetes
-- Detección de patrones anormales
+Analyzes WiFi traffic in real time.
+- Monitor/promiscuous mode
+- Packet statistics
+- Detection of unusual patterns
 
 ### 4. Evil Twin Detector
-Detecta puntos de acceso falsos o duplicados.
-- Identifica SSIDs duplicados
-- Compara direcciones MAC
-- Alertas de redes sospechosas
+Detects fake or duplicated access points.
+- Identifies duplicate SSIDs
+- Compares BSSID (MAC) addresses
+- Alerts for suspicious networks
 
 ### 5. Port Scanner
-Escanea puertos abiertos en dispositivos de la red local.
-- Escaneo de puertos comunes
-- Detección de servicios
-- Mapeo de red local
+Scans for open ports on devices in the local network.
+- Scans common ports
+- Attempts basic service identification
+- Helps map local network devices
 
-## 📋 Requisitos
+## 📋 Requirements
 
 ### Hardware
-- ESP32 (cualquier modelo)
-- LED (opcional, para alertas visuales)
-- Resistencia 220Ω (para el LED)
+- ESP32 (any model)
+- LED (optional, for visual alerts)
+- 220Ω resistor (for the LED)
 
 ### Software
-- Arduino IDE 2.0+ o PlatformIO
-- Librerías necesarias (se instalan automáticamente)
+- Arduino IDE 2.0+ or PlatformIO
+- Required libraries (should install automatically when compiling)
 
-## 🔧 Instalación
+## 🔧 Installation
 
-1. Clona o descarga este repositorio
-2. Abre el archivo `WhiteHatESP.ino` en Arduino IDE
-3. Selecciona tu placa ESP32 en Tools -> Board
-4. Selecciona el puerto COM correcto
-5. Sube el código
+1. Clone or download this repository
+2. Open `WhiteHatESP.ino` in the Arduino IDE
+3. Select your ESP32 board in Tools -> Board
+4. Select the correct COM port
+5. Upload the sketch to the board
 
-## 🚀 Uso
+## 🚀 Usage
 
-1. Conecta el ESP32 a tu computadora
-2. Abre el Monitor Serial (115200 baudios)
-3. Verás el menú principal con las 5 herramientas
-4. Escribe el número de la herramienta que quieres usar
-5. Sigue las instrucciones en pantalla
+1. Connect the ESP32 to your computer
+2. Open the Serial Monitor at 115200 baud
+3. You will see the main menu listing the 5 tools
+4. Enter the number of the tool you want to run
+5. Follow the on-screen instructions
 
-## ⚠️ Advertencia Legal
+## ⚠️ Legal Warning
 
-Este proyecto es SOLO para fines educativos y de seguridad defensiva.
-- Solo escanea TU propia red
-- No uses estas herramientas para atacar redes de terceros
-- El uso malicioso es ilegal y éticamente incorrecto
-- El autor no se responsabiliza por el mal uso de este código
+This project is ONLY for educational and defensive security purposes.
+- Only scan YOUR own network
+- Do not use these tools to attack third-party networks
+- Malicious use is illegal and unethical
+- The author is not responsible for misuse of this code
 
-## 📚 Propósito Educativo
+## 📚 Educational Purpose
 
-Este proyecto te ayudará a entender:
-- Cómo funcionan las redes WiFi
-- Vulnerabilidades comunes en seguridad
-- Técnicas de defensa y monitoreo
-- Programación de ESP32
-- Conceptos de ciberseguridad
+This project will help you learn:
+- How WiFi networks work
+- Common security weaknesses
+- Defense and monitoring techniques
+- ESP32 programming
+- Cybersecurity fundamentals
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-¡Las contribuciones son bienvenidas! Siéntete libre de mejorar el código y agregar nuevas herramientas.
+Contributions are welcome! Feel free to improve the code and add new tools.
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es de código abierto para fines educativos.
+This project is open source for educational purposes.
