@@ -58,9 +58,16 @@ void portScanner() {
   // Clear buffer
   while(Serial.available()) Serial.read();
   
+  // Properly disconnect and reset WiFi
+  WiFi.disconnect(true);
+  delay(500);
+  WiFi.mode(WIFI_OFF);
+  delay(500);
+  
   // Connect to WiFi
   Serial.printf("\nConnecting to %s...\n", ssid.c_str());
   WiFi.mode(WIFI_STA);
+  delay(100);
   WiFi.begin(ssid.c_str(), password.c_str());
   
   int attempts = 0;
