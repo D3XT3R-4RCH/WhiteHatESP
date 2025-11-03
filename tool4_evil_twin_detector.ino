@@ -11,6 +11,8 @@ struct NetworkInfo {
   int channel;
 };
 
+#include "configuracion.h"
+
 void evilTwinDetector() {
   Serial.println(">> Evil Twin Detector <<");
   Serial.println("Detecting duplicated access points...\n");
@@ -54,15 +56,31 @@ void evilTwinDetector() {
         Serial.println("⚠️⚠️⚠️ POSSIBLE EVIL TWIN DETECTED ⚠️⚠️⚠️\n");
         Serial.printf("Duplicate SSID: %s\n\n", networks[i].ssid.c_str());
         
+        // Compare against a saved known router MAC (if provided)
+        String knownMac = String(KNOWN_ROUTER_MAC);
+        bool hasKnownMac = (knownMac.length() > 0);
+        bool ap1IsKnown = false;
+        bool ap2IsKnown = false;
+        if (hasKnownMac) {
+          ap1IsKnown = networks[i].bssid.equalsIgnoreCase(knownMac);
+          ap2IsKnown = networks[j].bssid.equalsIgnoreCase(knownMac);
+        }
+
         Serial.println("AP #1:");
-        Serial.printf("  MAC (BSSID): %s\n", networks[i].bssid.c_str());
+        Serial.print("  MAC (BSSID): ");
+        Serial.print(networks[i].bssid);
+        if (ap1IsKnown) Serial.print("  <- KNOWN ROUTER");
+        Serial.println();
         Serial.printf("  Channel: %d\n", networks[i].channel);
         Serial.printf("  Signal: %d dBm\n", networks[i].rssi);
         
-        Serial.println("\nAP #2:");
-        Serial.printf("  MAC (BSSID): %s\n", networks[j].bssid.c_str());
-        Serial.printf("  Channel: %d\n", networks[j].channel);
-        Serial.printf("  Signal: %d dBm\n", networks[j].rssi);
+  Serial.println("\nAP #2:");
+  Serial.print("  MAC (BSSID): ");
+  Serial.print(networks[j].bssid);
+  if (ap2IsKnown) Serial.print("  <- KNOWN ROUTER");
+  Serial.println();
+  Serial.printf("  Channel: %d\n", networks[j].channel);
+  Serial.printf("  Signal: %d dBm\n", networks[j].rssi);
         
         Serial.println("\n📋 ANALYSIS:");
         
@@ -81,9 +99,29 @@ void evilTwinDetector() {
         }
         
         Serial.println("\n⚠️ RECOMMENDATION:");
-        Serial.println("  Verify which is your legitimate AP by comparing");
-        Serial.println("  the MAC address with your router's.");
-        Serial.println("  DO NOT connect to the suspicious AP.\n");
+        if (hasKnownMac) {
+          if (ap1IsKnown && !ap2IsKnown) {
+            Serial.println("  AP #1 matches your saved router MAC.");
+            Serial.println("  AP #2 does NOT match — treat AP #2 as suspicious.");
+            Serial.println("  DO NOT connect to AP #2.");
+          } else if (ap2IsKnown && !ap1IsKnown) {
+            Serial.println("  AP #2 matches your saved router MAC.");
+            Serial.println("  AP #1 does NOT match — treat AP #1 as suspicious.");
+            Serial.println("  DO NOT connect to AP #1.");
+          } else if (ap1IsKnown && ap2IsKnown) {
+            Serial.println("  Both APs match your saved MAC — this is unusual.");
+            Serial.println("  Double-check your router and consider rebooting it.");
+          } else {
+            Serial.println("  Neither AP matches the saved MAC.");
+            Serial.println("  Compare the MACs above with your router's MAC in \"configuracion.h\".");
+            Serial.println("  DO NOT connect to suspicious APs until verified.");
+          }
+        } else {
+          Serial.println("  Verify which is your legitimate AP by comparing");
+          Serial.println("  the MAC address with your router's (not configured).");
+          Serial.println("  To help future detections, set KNOWN_ROUTER_MAC in configuracion.h");
+          Serial.println("  DO NOT connect to the suspicious AP.\n");
+        }
         
         Serial.println("========================================\n");
         

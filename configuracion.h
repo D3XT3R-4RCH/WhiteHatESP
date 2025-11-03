@@ -61,4 +61,13 @@
 #define VERSION "1.0"
 #define AUTHOR "D3XT3R-4RCH"
 
+// ========================================
+// KNOWN ROUTER CONFIG
+// ========================================
+// Set this to your legitimate router's BSSID (MAC) to help the
+// Evil Twin detector automatically identify which AP is yours.
+// Example: #define KNOWN_ROUTER_MAC "08:95:2A:89:81:86"
+// Leave empty ("") if you don't want to set one.
+#define KNOWN_ROUTER_MAC ""
+
 #endif
